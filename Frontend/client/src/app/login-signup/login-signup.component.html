@@ -1,0 +1,56 @@
+<div class="mx-auto mainContainer">
+    <div class="form-inline header1">
+        <h3 class="w-50 {{login_color}}" (click)="switchlogin('login')">Login</h3>
+        <h3 class="w-50 {{signup_color}}" (click)="switchlogin('signup')">SignUp</h3>
+    </div>
+    <ng-container *ngIf="login;then loginPage;else logoutPage"></ng-container>
+</div>
+<ng-template #loginPage>
+    <form #loginForm="ngForm" (ngSubmit)="onLogin(loginForm)">
+        <div class="form-group">
+            <label class="form-control-label">Email Id <red>*</red></label>
+            <input type="email" (change)="emailValidator($event)" (keyup)="emailValidator($event)" name="lemail" ngModel class="form-control" required>
+            <red>{{ email_error_messege }}</red>
+        </div>
+        
+        <div class="form-group">
+            <label class="form-control-label">Password <red>*</red></label>
+            <input type="password" name="lpass" ngModel class="form-control" required>
+        </div>
+        <div class="footerContainer">
+            <red>{{ error_messege }}</red><br>
+            <input type="submit" class="loginButton" value="Login" [disabled]='(!isLoginDisable&&loginForm.form.valid) ?  false : true'>
+        </div>
+    </form>
+</ng-template>
+<ng-template #logoutPage>
+    <form #signUpForm="ngForm" (ngSubmit)="onSignUp(signUpForm)">
+        <div class="form-group">
+            <label class="form-control-label">First Name <red>*</red></label>
+            <input type="text" name="user_firstname" ngModel class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label">Last Name <red>*</red></label>
+            <input type="text" name="user_lastname" ngModel class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label">Email <red>*</red></label>
+            <input type="user_email" (change)="emailValidator($event)" (keyup)="emailValidator($event)" name="user_email" ngModel class="form-control" required>
+            <red>{{ email_error_messege }}</red>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label">Password <red>*</red></label>
+            <input type="password" (change)="passwordValidator($event)" (keyup)="passwordValidator($event)" name="user_pass1" [(ngModel)]="pass.user_pass1"  class="form-control" minlength="8" required>
+            <red>{{ password_error_messege }}</red>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label">Confirm Password <red>*</red></label>
+            <input type="password" (keyup)="passwordChecker()" name="user_password" [(ngModel)]="pass.user_password" class="form-control" minlength="8" required>
+            <red>{{ passwordcheck_error_messege }}</red>
+        </div>
+        <div class="footerContainer">
+            <red>{{ error_messege }}</red><br>
+            <input type="submit" class="loginButton" value="SignUp" [disabled]='(!isSignUpDisable&&signUpForm.form.valid) ?  false : true'>
+        </div>
+    </form>
+</ng-template>

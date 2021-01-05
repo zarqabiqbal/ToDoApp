@@ -1,0 +1,42 @@
+.card{
+    background-color: lightgray;
+    margin: 10px;
+    padding: 10px;
+}
+.heading{
+    color:indianred;
+    padding: 10px;
+}
+.addButton{
+    padding: 2px;
+    border-radius: 1px;
+}
+
+.addButton:hover{
+    background-color: lightgreen;
+}
+
+.theading{
+    background-color:rgb(225, 0, 255);
+    color: white;
+}
+
+
+ table,th,td{
+    border: 1px solid black;
+}
+.delButton{
+    border-radius: 10px;
+    width: fit-content;
+    outline: none;
+    margin-left: 5%;
+    border:1px solid grey;
+    height:fit-content;
+}
+.delButton:hover{
+    background-color: red;
+}
+.deleteCol{
+    text-align: center;
+    padding: 5px;
+}

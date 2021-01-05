@@ -1,0 +1,65 @@
+<div class="card">
+    <div class="form-inline">
+        <div class="heading">
+            <h4>Here Is your To Do List {{storage.getItem('fname')}}</h4>
+        </div>
+        <div class="ml-auto">
+            <button class="addButton" (click)="addMoreToggle()">Add More</button>
+        </div>
+    </div>
+    <div *ngIf="isAddMore">
+        <form #addTodoForm="ngForm" (ngSubmit)="addToDo(addTodoForm)">
+            <table class="col-12"> 
+                <tr class="col-12">
+                    <th class="col-1">To Do :</th>
+                    <th class="col-10"><textarea name="todo" ngModel class="w-100" required></textarea></th>
+                    <th class="col-1"><input type="submit" value="Add" class="deleteCol" [disabled]="(!addTodoForm.valid&&!isAddSubmit)"></th>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <table class="col-12">
+        <thead class="theading">
+            <tr class="col-12">
+                <th class="col-1">
+                    S.no
+                </th>
+                <th class="col-8">
+                    To Do
+                </th>
+                <th class="col-2">
+                    When Added
+                </th>
+                <th class="col-1 deleteCol">
+                    Delete
+                </th>
+            </tr>
+        </thead>
+        <!-- check whether list is empty or not and show data accordingly -->
+        <div *ngIf="toDoList.length > 0; then Data; else noData"></div>        
+    </table>
+</div>
+
+<!-- Show data when the list have something -->
+<ng-template #Data>
+    <tr *ngFor="let toDo of toDoList;let i = index" [attr.data-index]="i" class="col-12">
+        <td class="col-1">
+            {{i+1}}
+        </td>
+        <td class="col-8">
+                {{toDo.toDo}}
+        </td>
+        <td class="col-2">
+                {{toDo.timing | date:'EEEE, MMM d, y, h:mm a'}}
+        </td>
+        <td class="col-1 deleteCol">
+                <button class="delButton" (click)="delToDo(toDo.toDoId)">X</button>
+        </td>
+</tr>
+</ng-template>
+<!-- Show no data found when the list is empty -->
+<ng-template #noData> 
+    <tr class="col-12">
+        <td colspan="4" class="col-12 deleteCol">No Data Found</td>
+    </tr>
+</ng-template>
