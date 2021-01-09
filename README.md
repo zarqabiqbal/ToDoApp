@@ -3,20 +3,15 @@
 Step 1.Install these libraries in ubuntu first using this command
 ---sudo apt-get install sqlite3 libsqlite3-dev
 
-Step 2.Then install requirement.txt place in backend folder
+Step 2.Then install requirement.txt place in root folder
 ---goto backend folder
 ---open terminal there
 ---then enter this command "pip install -r requirement.txt"
 
-Step 3.Then install npm libraries
----goto frontend folder
----open terminal there
----then enter this command "npm install"
 
+##################       command to run django angularjs embed app ####################
 
-##################       First Run Django backend after complete above steps ####################
-
-Step 1.Goto This folder backend->todo_list
+Step 1.Goto This folder Django_Angular_Embed->todo_list
 ---then open terminal and hit these commands
 ------"python manage.py makemigrations"
 ------"python manage.py migrate"
@@ -24,18 +19,18 @@ Step 1.Goto This folder backend->todo_list
 ------"python manage.py runserver"
 
 
-##################  Then Run front end Service build in angular after running backend service #################
+##################       command to run django fullstack embed app ####################
 
-Step 1.Goto this folder frontend->client
+Step 1.Goto This folder Django_Full_Stack->todo_list
 ---then open terminal and hit these commands
-------"ng serve"
+------"python manage.py makemigrations"
+------"python manage.py migrate"
+------"python manage.py collectstatic"
+------"python manage.py runserver"
+
 
 ################# How To  Use #######################
 
----open browser and go to this url "http://localhost:4200"
+---open browser and go to this url "http://127.0.0.1:8000"
 ---Then signup for first use
 
-
-########################### NOTE ##########################
-I already embed angular app with django so you can directly access the To Do App after running backend services
----After running backend services go to this url for accessing app http://127.0.0.1:8000

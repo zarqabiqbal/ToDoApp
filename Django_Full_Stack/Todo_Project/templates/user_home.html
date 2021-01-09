@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% block content%}
+{% load static %}
+<link href='{% static "/css/user_home.css" %}' rel="stylesheet">
+<div class="card">
+    <div class="form-inline">
+        <div class="heading">
+            <h4>Here Is your To Do List {{fname}}</h4>
+        </div>
+    </div>
+    <form action="add_todo" method="post">
+        {% csrf_token %}
+        <table class="col-12">
+            <tr class="col-12">
+                <th class="col-1">To Do :</th>
+                <th class="col-10"><textarea name="todo" class="w-100" required></textarea></th>
+                <th class="col-1"><input type="submit" value="Add" class="deleteCol"></th>
+            </tr>
+        </table>
+    </form>
+    <table class="col-12">
+        <thead class="theading">
+            <tr class="col-12">
+                <th class="col-1">
+                    S.no
+                </th>
+                <th class="col-8">
+                    To Do
+                </th>
+                <th class="col-2">
+                    When Added
+                </th>
+                <th class="col-1 deleteCol">
+                    Delete
+                </th>
+            </tr>
+        </thead>
+        <!-- check whether list is empty or not and show data accordingly -->
+        {% if todoList %}
+            {% for todo in todoList %}
+                <tr class="col-12">
+                        <td class="col-1">
+                            {{ forloop.counter}}
+                        </td>
+                        <td class="col-8">
+                                {{ todo.toDo }}
+                        </td>
+                        <td class="col-2">
+                                {{ todo.timing }}
+                        </td>
+                    <form action="remove_todo" method="post">
+                        {% csrf_token %}
+                        <td class="col-1 deleteCol">
+                            <input type="hidden" name="toDoId" value="{{todo.toDoId}}">
+                                <button type="submit" class="delButton">X</button>
+                        </td>
+                    </form>
+                </tr>
+            {% endfor %}
+        {% else %}
+            <tr class="col-12">
+                <td colspan="4" class="col-12 deleteCol">No Data Found</td>
+            </tr>
+        {% endif %}
+    </table>
+</div>
+{%endblock%}
